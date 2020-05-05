@@ -43,4 +43,10 @@ public class Fichier implements Serializable {
 		this.nom = nom;
 	}
 
+	@Override
+	public String toString() {
+		return "Fichier [id=" + id + ", nom=" + nom + "]";
+	}
+	
+
 }

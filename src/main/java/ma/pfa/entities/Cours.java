@@ -1,5 +1,4 @@
 package ma.pfa.entities;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,55 +7,56 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
-public class Commentaire implements Serializable {
-
-	/**
-	 * 
-	 */
+public class Cours {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String label;
-	private Date date;
-
-	public Commentaire() {
+	private String code;
+	private String specialite;
+	public Cours(Long id, String label,String code, String specialite) {
+		super();
+		this.id = id;
+		this.label = label;
+		this.specialite = specialite;
+		this.code= code;
+	}
+	
+	public Cours() {
 		super();
 	}
+	
 
-	public Commentaire(String label, Date date) {
-		super();
-		this.label = label;
-		this.date = date;
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getLabel() {
 		return label;
 	}
-
 	public void setLabel(String label) {
 		this.label = label;
 	}
-
-	public Date getDate() {
-		return date;
+	public String getSpecialite() {
+		return specialite;
 	}
-
-	public void setDate(Date date) {
-		this.date = date;
+	public void setSpecialite(String specialite) {
+		this.specialite = specialite;
 	}
-
 	@Override
 	public String toString() {
-		return "Commentaire [id=" + id + ", label=" + label + ", date=" + date + "]";
+		return "Cours [id=" + id + ", label=" + label + ", specialite=" + specialite + "]";
 	}
 	
 
