@@ -1,12 +1,11 @@
 package ma.pfa.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 public class Post implements Serializable {
 
@@ -20,16 +19,28 @@ public class Post implements Serializable {
 	private String titre;
 	private String description;
 	private Date dateDebut;
+	@ManyToOne
+	private Cours cours;
+	@ManyToOne
+	private User user;
+	@OneToMany(mappedBy = "post")
+	private Collection<Commentaire> commentaires;
+	@OneToMany(mappedBy = "post")
+	private Collection<PostHasFiles> postHasFiles;
 
-	public Post() {
-		super();
-	}
 
-	public Post(String titre, String description, Date dateDebut) {
-		super();
+	public Post(String titre, String description, Date dateDebut, Cours cours, User user, Collection<Commentaire> commentaires, Collection<PostHasFiles> postHasFiles) {
 		this.titre = titre;
 		this.description = description;
 		this.dateDebut = dateDebut;
+		this.cours = cours;
+		this.user = user;
+		this.commentaires = commentaires;
+		this.postHasFiles = postHasFiles;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
 	public Long getId() {
@@ -64,11 +75,49 @@ public class Post implements Serializable {
 		this.dateDebut = dateDebut;
 	}
 
+	public Cours getCours() {
+		return cours;
+	}
+
+	public void setCours(Cours cours) {
+		this.cours = cours;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Collection<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(Collection<Commentaire> commentaires) {
+		this.commentaires = commentaires;
+	}
+
+	public Collection<PostHasFiles> getPostHasFiles() {
+		return postHasFiles;
+	}
+
+	public void setPostHasFiles(Collection<PostHasFiles> postHasFiles) {
+		this.postHasFiles = postHasFiles;
+	}
+
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", titre=" + titre + ", description=" + description + ", dateDebut=" + dateDebut
-				+ "]";
+		return "Post{" +
+				"id=" + id +
+				", titre='" + titre + '\'' +
+				", description='" + description + '\'' +
+				", dateDebut=" + dateDebut +
+				", cours=" + cours +
+				", user=" + user +
+				", commentaires=" + commentaires +
+				", postHasFiles=" + postHasFiles +
+				'}';
 	}
-	
-
 }

@@ -3,10 +3,8 @@ package ma.pfa.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 public class Commentaire implements Serializable {
 
@@ -19,15 +17,20 @@ public class Commentaire implements Serializable {
 	private Long id;
 	private String label;
 	private Date date;
+	@ManyToOne
+	private User user;
+	@ManyToOne
+	private Post post;
 
-	public Commentaire() {
-		super();
-	}
-
-	public Commentaire(String label, Date date) {
-		super();
+	public Commentaire(String label, Date date, User user, Post post) {
 		this.label = label;
 		this.date = date;
+		this.user = user;
+		this.post = post;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
 	public Long getId() {
@@ -54,10 +57,30 @@ public class Commentaire implements Serializable {
 		this.date = date;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
 	@Override
 	public String toString() {
-		return "Commentaire [id=" + id + ", label=" + label + ", date=" + date + "]";
+		return "Commentaire{" +
+				"id=" + id +
+				", label='" + label + '\'' +
+				", date=" + date +
+				", user=" + user +
+				", post=" + post +
+				'}';
 	}
-	
-
 }

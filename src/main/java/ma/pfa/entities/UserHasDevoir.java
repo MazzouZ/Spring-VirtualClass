@@ -2,24 +2,26 @@ package ma.pfa.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-@Entity
-public class UserHasDevoir {
-	private static final long serialVersionUID = 1L;
-	
-	private double note;
+import javax.persistence.*;
 
-	public UserHasDevoir(double note) {
-		super();
-		this.note = note;
+@Entity
+public class UserHasDevoir implements Serializable{
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private double note;
+	@ManyToOne
+	private Devoir devoir;
+	@ManyToOne
+	private User user;
+
+	public UserHasDevoir(Devoir devoir, User user) {
+		this.devoir = devoir;
+		this.user = user;
 	}
 
-	public UserHasDevoir() {
-		super();
-		// TODO Auto-generated constructor stub
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
 	public double getNote() {
@@ -30,10 +32,28 @@ public class UserHasDevoir {
 		this.note = note;
 	}
 
+	public Devoir getDevoir() {
+		return devoir;
+	}
+
+	public void setDevoir(Devoir devoir) {
+		this.devoir = devoir;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
-		return "UserHasDevoir [note=" + note + "]";
+		return "UserHasDevoir{" +
+				"note=" + note +
+				", devoir=" + devoir +
+				", user=" + user +
+				'}';
 	}
-	
-
 }

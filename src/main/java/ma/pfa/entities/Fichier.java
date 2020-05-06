@@ -1,11 +1,10 @@
 package ma.pfa.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 public class Fichier implements Serializable {
 
@@ -17,14 +16,16 @@ public class Fichier implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nom;
+	@OneToMany(mappedBy = "fichier")
+	private Collection<PostHasFiles> postHasFiles;
 
-	public Fichier() {
-		super();
+	public Fichier(String nom, Collection<PostHasFiles> postHasFiles) {
+		this.nom = nom;
+		this.postHasFiles = postHasFiles;
 	}
 
-	public Fichier(String nom) {
-		super();
-		this.nom = nom;
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
 	public Long getId() {
@@ -43,10 +44,20 @@ public class Fichier implements Serializable {
 		this.nom = nom;
 	}
 
+	public Collection<PostHasFiles> getPostHasFiles() {
+		return postHasFiles;
+	}
+
+	public void setPostHasFiles(Collection<PostHasFiles> postHasFiles) {
+		this.postHasFiles = postHasFiles;
+	}
+
 	@Override
 	public String toString() {
-		return "Fichier [id=" + id + ", nom=" + nom + "]";
+		return "Fichier{" +
+				"id=" + id +
+				", nom='" + nom + '\'' +
+				", postHasFiles=" + postHasFiles +
+				'}';
 	}
-	
-
 }

@@ -1,13 +1,12 @@
 package ma.pfa.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 //@Entity
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 @Entity
 public class User implements Serializable {
 	/**
@@ -25,15 +24,20 @@ public class User implements Serializable {
 	private String photo;
 	private String telehpone;
 	private Date dateCreation;
-	private String role;
+	@OneToMany(mappedBy = "user")
+	private Collection<UserHasRole> roles;
+	@OneToMany(mappedBy = "user")
+	private Collection<Equipe_Inscription> equipeInscriptions;
+	@OneToMany(mappedBy = "user")
+	private Collection<UserHasDevoir> userHasDevoirs;
+	@OneToMany(mappedBy = "user")
+	private Collection<Post> posts;
+	@OneToMany(mappedBy = "user")
+	private Collection<Commentaire> commentaires;
+	@ManyToOne
+	private Organisation organisation;
 
-	public User() {
-		super();
-	}
-
-	public User(String nom, String prenom, String email, String login, String password, String photo, String telehpone,
-			Date dateCreation, String role) {
-		super();
+	public User(String nom, String prenom, String email, String login, String password, String photo, String telehpone, Date dateCreation, Collection<UserHasRole> roles, Collection<Equipe_Inscription> equipeInscriptions, Collection<UserHasDevoir> userHasDevoirs, Collection<Post> posts, Collection<Commentaire> commentaires, Organisation organisation) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
@@ -42,7 +46,16 @@ public class User implements Serializable {
 		this.photo = photo;
 		this.telehpone = telehpone;
 		this.dateCreation = dateCreation;
-		this.role = role;
+		this.roles = roles;
+		this.equipeInscriptions = equipeInscriptions;
+		this.userHasDevoirs = userHasDevoirs;
+		this.posts = posts;
+		this.commentaires = commentaires;
+		this.organisation = organisation;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
 	public Long getId() {
@@ -117,20 +130,72 @@ public class User implements Serializable {
 		this.dateCreation = dateCreation;
 	}
 
-	public String getRole() {
-		return role;
+	public Collection<UserHasRole> getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(Collection<UserHasRole> roles) {
+		this.roles = roles;
+	}
+
+	public Collection<Equipe_Inscription> getEquipeInscriptions() {
+		return equipeInscriptions;
+	}
+
+	public void setEquipeInscriptions(Collection<Equipe_Inscription> equipeInscriptions) {
+		this.equipeInscriptions = equipeInscriptions;
+	}
+
+	public Collection<UserHasDevoir> getUserHasDevoirs() {
+		return userHasDevoirs;
+	}
+
+	public void setUserHasDevoirs(Collection<UserHasDevoir> userHasDevoirs) {
+		this.userHasDevoirs = userHasDevoirs;
+	}
+
+	public Collection<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Collection<Post> posts) {
+		this.posts = posts;
+	}
+
+	public Collection<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(Collection<Commentaire> commentaires) {
+		this.commentaires = commentaires;
+	}
+
+	public Organisation getOrganisation() {
+		return organisation;
+	}
+
+	public void setOrganisation(Organisation organisation) {
+		this.organisation = organisation;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", login=" + login
-				+ ", password=" + password + ", photo=" + photo + ", telehpone=" + telehpone + ", dateCreation="
-				+ dateCreation + ", role=" + role + "]";
+		return "User{" +
+				"id=" + id +
+				", nom='" + nom + '\'' +
+				", prenom='" + prenom + '\'' +
+				", email='" + email + '\'' +
+				", login='" + login + '\'' +
+				", password='" + password + '\'' +
+				", photo='" + photo + '\'' +
+				", telehpone='" + telehpone + '\'' +
+				", dateCreation=" + dateCreation +
+				", roles=" + roles +
+				", equipeInscriptions=" + equipeInscriptions +
+				", userHasDevoirs=" + userHasDevoirs +
+				", posts=" + posts +
+				", commentaires=" + commentaires +
+				", organisation=" + organisation +
+				'}';
 	}
-	
-
 }

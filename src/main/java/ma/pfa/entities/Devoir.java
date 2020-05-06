@@ -1,13 +1,12 @@
 package ma.pfa.entities;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
-public class Devoir {
+public class Devoir implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,59 +16,100 @@ public class Devoir {
 	private Date dateDebut;
 	private Date dateFin;
 	private String regles;
-	public Devoir() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Devoir(Long id, String titre, String description, Date dateDebut, Date dateFin, String regles) {
-		super();
-		this.id = id;
+	@ManyToOne
+	private Cours cours;
+	@OneToMany(mappedBy = "devoir")
+	private Collection<UserHasDevoir>  userHasDevoirs;
+
+	public Devoir(String titre, String description, Date dateDebut, Date dateFin, String regles, Cours cours, Collection<UserHasDevoir> userHasDevoirs) {
 		this.titre = titre;
 		this.description = description;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.regles = regles;
+		this.cours = cours;
+		this.userHasDevoirs = userHasDevoirs;
 	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getTitre() {
 		return titre;
 	}
+
 	public void setTitre(String titre) {
 		this.titre = titre;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public Date getDateDebut() {
 		return dateDebut;
 	}
+
 	public void setDateDebut(Date dateDebut) {
 		this.dateDebut = dateDebut;
 	}
+
 	public Date getDateFin() {
 		return dateFin;
 	}
+
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
+
 	public String getRegles() {
 		return regles;
 	}
+
 	public void setRegles(String regles) {
 		this.regles = regles;
 	}
+
+	public Cours getCours() {
+		return cours;
+	}
+
+	public void setCours(Cours cours) {
+		this.cours = cours;
+	}
+
+	public Collection<UserHasDevoir> getUserHasDevoirs() {
+		return userHasDevoirs;
+	}
+
+	public void setUserHasDevoirs(Collection<UserHasDevoir> userHasDevoirs) {
+		this.userHasDevoirs = userHasDevoirs;
+	}
+
 	@Override
 	public String toString() {
-		return "Devoir [id=" + id + ", titre=" + titre + ", description=" + description + ", dateDebut=" + dateDebut
-				+ ", dateFin=" + dateFin + ", regles=" + regles + "]";
+		return "Devoir{" +
+				"id=" + id +
+				", titre='" + titre + '\'' +
+				", description='" + description + '\'' +
+				", dateDebut=" + dateDebut +
+				", dateFin=" + dateFin +
+				", regles='" + regles + '\'' +
+				", cours=" + cours +
+				", userHasDevoirs=" + userHasDevoirs +
+				'}';
 	}
-	
 }
