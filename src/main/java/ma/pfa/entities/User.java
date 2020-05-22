@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
+
+import lombok.NoArgsConstructor;
 //@Entity
 
 @Entity
@@ -52,6 +54,9 @@ public class User implements Serializable {
 		this.posts = posts;
 		this.commentaires = commentaires;
 		this.organisation = organisation;
+	}
+
+	public User() {
 	}
 
 	public static long getSerialVersionUID() {

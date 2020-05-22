@@ -20,6 +20,9 @@ public class Organisation implements Serializable{
 		@OneToMany(mappedBy = "organisation")
 		private Collection<Cours> cours;
 
+	public Organisation() {
+	}
+
 	public Organisation(String label, String email, String photo, String compteOrganisation, Collection<User> users, Collection<Cours> cours) {
 		this.label = label;
 		this.email = email;
