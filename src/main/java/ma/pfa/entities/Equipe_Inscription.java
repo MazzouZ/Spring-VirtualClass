@@ -14,14 +14,14 @@ public class Equipe_Inscription implements Serializable{
 	private Date dateInscription;
 	private String role;
 	@ManyToOne
-	private User user;
+	private MzUser mzUser;
 	@ManyToOne
 	private Cours cours;
 
-	public Equipe_Inscription(Date dateInscription, String role, User user, Cours cours) {
+	public Equipe_Inscription(Date dateInscription, String role, MzUser mzUser, Cours cours) {
 		this.dateInscription = dateInscription;
 		this.role = role;
-		this.user = user;
+		this.mzUser = mzUser;
 		this.cours = cours;
 	}
 
@@ -53,12 +53,12 @@ public class Equipe_Inscription implements Serializable{
 		this.role = role;
 	}
 
-	public User getUser() {
-		return user;
+	public MzUser getMzUser() {
+		return mzUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setMzUser(MzUser mzUser) {
+		this.mzUser = mzUser;
 	}
 
 	public Cours getCours() {
@@ -74,8 +74,8 @@ public class Equipe_Inscription implements Serializable{
 		return "Equipe_Inscription{" +
 				"id=" + id +
 				", dateInscription=" + dateInscription +
-				", role='" + role + '\'' +
-				", user=" + user +
+				", mzRole='" + role + '\'' +
+				", mzUser=" + mzUser +
 				", cours=" + cours +
 				'}';
 	}

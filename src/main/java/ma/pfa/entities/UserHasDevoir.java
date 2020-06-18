@@ -1,6 +1,5 @@
 package ma.pfa.entities;
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.*;
 
@@ -13,11 +12,11 @@ public class UserHasDevoir implements Serializable{
 	@ManyToOne
 	private Devoir devoir;
 	@ManyToOne
-	private User user;
+	private MzUser mzUser;
 
-	public UserHasDevoir(Devoir devoir, User user) {
+	public UserHasDevoir(Devoir devoir, MzUser mzUser) {
 		this.devoir = devoir;
-		this.user = user;
+		this.mzUser = mzUser;
 	}
 
 	public static long getSerialVersionUID() {
@@ -40,12 +39,12 @@ public class UserHasDevoir implements Serializable{
 		this.devoir = devoir;
 	}
 
-	public User getUser() {
-		return user;
+	public MzUser getMzUser() {
+		return mzUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setMzUser(MzUser mzUser) {
+		this.mzUser = mzUser;
 	}
 
 	@Override
@@ -53,7 +52,7 @@ public class UserHasDevoir implements Serializable{
 		return "UserHasDevoir{" +
 				"note=" + note +
 				", devoir=" + devoir +
-				", user=" + user +
+				", mzUser=" + mzUser +
 				'}';
 	}
 }

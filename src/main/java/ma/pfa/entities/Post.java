@@ -22,19 +22,19 @@ public class Post implements Serializable {
 	@ManyToOne
 	private Cours cours;
 	@ManyToOne
-	private User user;
+	private MzUser mzUser;
 	@OneToMany(mappedBy = "post")
 	private Collection<Commentaire> commentaires;
 	@OneToMany(mappedBy = "post")
 	private Collection<PostHasFiles> postHasFiles;
 
 
-	public Post(String titre, String description, Date dateDebut, Cours cours, User user, Collection<Commentaire> commentaires, Collection<PostHasFiles> postHasFiles) {
+	public Post(String titre, String description, Date dateDebut, Cours cours, MzUser mzUser, Collection<Commentaire> commentaires, Collection<PostHasFiles> postHasFiles) {
 		this.titre = titre;
 		this.description = description;
 		this.dateDebut = dateDebut;
 		this.cours = cours;
-		this.user = user;
+		this.mzUser = mzUser;
 		this.commentaires = commentaires;
 		this.postHasFiles = postHasFiles;
 	}
@@ -83,12 +83,12 @@ public class Post implements Serializable {
 		this.cours = cours;
 	}
 
-	public User getUser() {
-		return user;
+	public MzUser getMzUser() {
+		return mzUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setMzUser(MzUser mzUser) {
+		this.mzUser = mzUser;
 	}
 
 	public Collection<Commentaire> getCommentaires() {
@@ -115,7 +115,7 @@ public class Post implements Serializable {
 				", description='" + description + '\'' +
 				", dateDebut=" + dateDebut +
 				", cours=" + cours +
-				", user=" + user +
+				", mzUser=" + mzUser +
 				", commentaires=" + commentaires +
 				", postHasFiles=" + postHasFiles +
 				'}';

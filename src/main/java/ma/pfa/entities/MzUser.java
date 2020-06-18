@@ -1,16 +1,15 @@
 package ma.pfa.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
-
-import lombok.NoArgsConstructor;
 //@Entity
 
 @Entity
-public class User implements Serializable {
+public class MzUser implements Serializable {
 	/**
 	 * 
 	 */
@@ -21,34 +20,37 @@ public class User implements Serializable {
 	private String nom;
 	private String prenom;
 	private String email;
-	private String login;
+	private String username;
 	private String password;
 	private String photo;
 	private String telehpone;
 	private Date dateCreation;
-	@OneToMany(mappedBy = "user")
-	private Collection<UserHasRole> roles;
-	@OneToMany(mappedBy = "user")
+	private boolean actived;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Collection<MzRole> roles=new ArrayList<>();
+
+	@OneToMany(mappedBy = "mzUser")
 	private Collection<Equipe_Inscription> equipeInscriptions;
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "mzUser")
 	private Collection<UserHasDevoir> userHasDevoirs;
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "mzUser")
 	private Collection<Post> posts;
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "mzUser")
 	private Collection<Commentaire> commentaires;
 	@ManyToOne
 	private Organisation organisation;
 
-	public User(String nom, String prenom, String email, String login, String password, String photo, String telehpone, Date dateCreation, Collection<UserHasRole> roles, Collection<Equipe_Inscription> equipeInscriptions, Collection<UserHasDevoir> userHasDevoirs, Collection<Post> posts, Collection<Commentaire> commentaires, Organisation organisation) {
+	public MzUser(String nom, String prenom, String email, String username, String password, String photo, String telehpone, Date dateCreation, boolean actived, Collection<MzRole> roles, Collection<Equipe_Inscription> equipeInscriptions, Collection<UserHasDevoir> userHasDevoirs, Collection<Post> posts, Collection<Commentaire> commentaires, Organisation organisation) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.login = login;
+		this.username = username;
 		this.password = password;
 		this.photo = photo;
 		this.telehpone = telehpone;
 		this.dateCreation = dateCreation;
-		this.roles = roles;
+		this.actived = actived;
+		this.roles=roles;
 		this.equipeInscriptions = equipeInscriptions;
 		this.userHasDevoirs = userHasDevoirs;
 		this.posts = posts;
@@ -56,7 +58,7 @@ public class User implements Serializable {
 		this.organisation = organisation;
 	}
 
-	public User() {
+	public MzUser() {
 	}
 
 	public static long getSerialVersionUID() {
@@ -95,12 +97,20 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public boolean isActived() {
+		return actived;
+	}
+
+	public void setActived(boolean actived) {
+		this.actived = actived;
 	}
 
 	public String getPassword() {
@@ -135,11 +145,11 @@ public class User implements Serializable {
 		this.dateCreation = dateCreation;
 	}
 
-	public Collection<UserHasRole> getRoles() {
+	public Collection<MzRole> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Collection<UserHasRole> roles) {
+	public void setRoles(Collection<MzRole> roles) {
 		this.roles = roles;
 	}
 
@@ -185,12 +195,12 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User{" +
+		return "MzUser{" +
 				"id=" + id +
 				", nom='" + nom + '\'' +
 				", prenom='" + prenom + '\'' +
 				", email='" + email + '\'' +
-				", login='" + login + '\'' +
+				", username='" + username + '\'' +
 				", password='" + password + '\'' +
 				", photo='" + photo + '\'' +
 				", telehpone='" + telehpone + '\'' +

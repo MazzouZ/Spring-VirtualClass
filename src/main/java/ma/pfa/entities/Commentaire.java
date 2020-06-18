@@ -18,14 +18,14 @@ public class Commentaire implements Serializable {
 	private String label;
 	private Date date;
 	@ManyToOne
-	private User user;
+	private MzUser mzUser;
 	@ManyToOne
 	private Post post;
 
-	public Commentaire(String label, Date date, User user, Post post) {
+	public Commentaire(String label, Date date, MzUser mzUser, Post post) {
 		this.label = label;
 		this.date = date;
-		this.user = user;
+		this.mzUser = mzUser;
 		this.post = post;
 	}
 
@@ -57,12 +57,12 @@ public class Commentaire implements Serializable {
 		this.date = date;
 	}
 
-	public User getUser() {
-		return user;
+	public MzUser getMzUser() {
+		return mzUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setMzUser(MzUser mzUser) {
+		this.mzUser = mzUser;
 	}
 
 	public Post getPost() {
@@ -79,7 +79,7 @@ public class Commentaire implements Serializable {
 				"id=" + id +
 				", label='" + label + '\'' +
 				", date=" + date +
-				", user=" + user +
+				", mzUser=" + mzUser +
 				", post=" + post +
 				'}';
 	}

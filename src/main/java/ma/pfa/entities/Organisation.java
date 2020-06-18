@@ -1,7 +1,6 @@
 package ma.pfa.entities;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 
 import javax.persistence.*;
 
@@ -16,19 +15,19 @@ public class Organisation implements Serializable{
 		private String photo;
 		private String CompteOrganisation;
 		@OneToMany(mappedBy = "organisation")
-		private Collection<User> users;
+		private Collection<MzUser> mzUsers;
 		@OneToMany(mappedBy = "organisation")
 		private Collection<Cours> cours;
 
 	public Organisation() {
 	}
 
-	public Organisation(String label, String email, String photo, String compteOrganisation, Collection<User> users, Collection<Cours> cours) {
+	public Organisation(String label, String email, String photo, String compteOrganisation, Collection<MzUser> mzUsers, Collection<Cours> cours) {
 		this.label = label;
 		this.email = email;
 		this.photo = photo;
 		CompteOrganisation = compteOrganisation;
-		this.users = users;
+		this.mzUsers = mzUsers;
 		this.cours = cours;
 	}
 
@@ -76,12 +75,12 @@ public class Organisation implements Serializable{
 		CompteOrganisation = compteOrganisation;
 	}
 
-	public Collection<User> getUsers() {
-		return users;
+	public Collection<MzUser> getMzUsers() {
+		return mzUsers;
 	}
 
-	public void setUsers(Collection<User> users) {
-		this.users = users;
+	public void setMzUsers(Collection<MzUser> mzUsers) {
+		this.mzUsers = mzUsers;
 	}
 
 	public Collection<Cours> getCours() {
@@ -100,7 +99,7 @@ public class Organisation implements Serializable{
 				", email='" + email + '\'' +
 				", photo='" + photo + '\'' +
 				", CompteOrganisation='" + CompteOrganisation + '\'' +
-				", users=" + users +
+				", mzUsers=" + mzUsers +
 				", cours=" + cours +
 				'}';
 	}
