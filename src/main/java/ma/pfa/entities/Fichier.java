@@ -19,6 +19,9 @@ public class Fichier implements Serializable {
 	@OneToMany(mappedBy = "fichier")
 	private Collection<PostHasFiles> postHasFiles;
 
+	public Fichier() {
+	}
+
 	public Fichier(String nom, Collection<PostHasFiles> postHasFiles) {
 		this.nom = nom;
 		this.postHasFiles = postHasFiles;

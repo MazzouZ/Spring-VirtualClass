@@ -23,6 +23,9 @@ public class Cours implements Serializable{
 	@OneToMany(mappedBy = "cours")
 	private Collection<Post> posts;
 
+	public Cours() {
+	}
+
 	public Cours(String label, String code, String specialite, Collection<Equipe_Inscription> equipeInscriptions, Organisation organisation, Collection<Devoir> devoirs, Collection<Post> posts) {
 		this.label = label;
 		this.code = code;
