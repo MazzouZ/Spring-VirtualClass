@@ -17,8 +17,17 @@ public class PostHasFiles implements Serializable {
         this.post = post;
         this.fichier = fichier;
     }
+    
+    
 
-    public static long getSerialVersionUID() {
+    public PostHasFiles() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 

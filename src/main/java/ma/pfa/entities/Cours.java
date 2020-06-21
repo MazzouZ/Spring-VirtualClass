@@ -32,6 +32,13 @@ public class Cours implements Serializable{
 		this.devoirs = devoirs;
 		this.posts = posts;
 	}
+	
+
+	public Cours() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;

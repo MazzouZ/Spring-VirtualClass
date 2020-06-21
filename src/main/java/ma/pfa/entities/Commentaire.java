@@ -28,6 +28,15 @@ public class Commentaire implements Serializable {
 		this.mzUser = mzUser;
 		this.post = post;
 	}
+	
+	
+
+	public Commentaire() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;

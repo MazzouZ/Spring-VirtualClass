@@ -38,6 +38,15 @@ public class Post implements Serializable {
 		this.commentaires = commentaires;
 		this.postHasFiles = postHasFiles;
 	}
+	
+	
+
+	public Post() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;

@@ -23,6 +23,15 @@ public class Fichier implements Serializable {
 		this.nom = nom;
 		this.postHasFiles = postHasFiles;
 	}
+	
+	
+
+	public Fichier() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
