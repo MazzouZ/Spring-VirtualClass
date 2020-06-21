@@ -1,6 +1,7 @@
 package ma.pfa.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -26,8 +27,10 @@ public class Post implements Serializable {
 	@OneToMany(mappedBy = "post")
 	private Collection<Commentaire> commentaires;
 	@OneToMany(mappedBy = "post")
-	private Collection<PostHasFiles> postHasFiles;
+	private Collection<PostHasFiles> postHasFiles=new ArrayList<>();
 
+	public Post() {
+	}
 
 	public Post(String titre, String description, Date dateDebut, Cours cours, MzUser mzUser, Collection<Commentaire> commentaires, Collection<PostHasFiles> postHasFiles) {
 		this.titre = titre;

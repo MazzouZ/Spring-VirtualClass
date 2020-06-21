@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import ma.pfa.entities.Fichier;
 
+import java.util.ArrayList;
+
 @RepositoryRestResource
 @CrossOrigin("*")
 public interface FichierRepository extends JpaRepository<Fichier, Long> {
-
+        ArrayList<Fichier> findByNom(String fileName);
 }

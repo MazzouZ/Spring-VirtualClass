@@ -13,6 +13,9 @@ public class PostHasFiles implements Serializable {
     @ManyToOne
     private Fichier fichier;
 
+    public PostHasFiles() {
+    }
+
     public PostHasFiles(Post post, Fichier fichier) {
         this.post = post;
         this.fichier = fichier;
