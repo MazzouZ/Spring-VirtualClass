@@ -29,8 +29,6 @@ public class Post implements Serializable {
 	@OneToMany(mappedBy = "post")
 	private Collection<PostHasFiles> postHasFiles=new ArrayList<>();
 
-	public Post() {
-	}
 
 	public Post(String titre, String description, Date dateDebut, Cours cours, MzUser mzUser, Collection<Commentaire> commentaires, Collection<PostHasFiles> postHasFiles) {
 		this.titre = titre;
