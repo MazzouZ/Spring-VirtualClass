@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
 @Transactional
 public class AccountServiceImpl implements AccountService {
@@ -39,10 +41,30 @@ public class AccountServiceImpl implements AccountService {
         mzUser.setUsername(username);
         mzUser.setEmail(email);
         mzUser.setActived(true);
+        mzUser.setDateCreation(new Date(System.currentTimeMillis()));
         mzUser.setPassword(bCryptPasswordEncoder.encode(password));
         mzUser.setOrganisation(organisation);
         mzUserRepository.save(mzUser);
         addRoleToUser(username,"AdminOrganisation");
+        return mzUser;
+    }
+    @Override
+    public MzUser addUser(MzUser mzUserParam,Long idOrganisation,String selectedRole) {
+        MzUser user= mzUserRepository.findByUsername(mzUserParam.getUsername());
+        if(user!=null) throw new RuntimeException("User already exists");
+        MzUser mzUser =new MzUser();
+        Organisation organisation=organisationRepository.findById(idOrganisation).get();
+        mzUser.setUsername(mzUserParam.getUsername());
+        mzUser.setEmail(mzUserParam.getEmail());
+        mzUser.setActived(true);
+        mzUser.setPassword(bCryptPasswordEncoder.encode(mzUserParam.getPassword()));
+        mzUser.setOrganisation(organisation);
+        mzUser.setNom(mzUserParam.getNom());
+        mzUser.setPrenom(mzUserParam.getPrenom());
+        mzUser.setTelehpone(mzUserParam.getTelehpone());
+        mzUser.setDateCreation(mzUserParam.getDateCreation());
+        mzUserRepository.save(mzUser);
+        addRoleToUser(mzUserParam.getUsername(),selectedRole);
         return mzUser;
     }
 
