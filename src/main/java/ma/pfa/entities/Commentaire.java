@@ -21,15 +21,23 @@ public class Commentaire implements Serializable {
 	private MzUser mzUser;
 	@ManyToOne
 	private Post post;
+	@ManyToOne
+	private Devoir devoir;
 
-	public Commentaire(String label, Date date, MzUser mzUser, Post post) {
+	
+	
+	
+
+	public Commentaire(String label, Date date, MzUser mzUser, Post post, Devoir devoir) {
+		super();
 		this.label = label;
 		this.date = date;
 		this.mzUser = mzUser;
 		this.post = post;
+		this.devoir = devoir;
 	}
-	
-	
+
+
 
 	public Commentaire() {
 		super();
@@ -81,6 +89,19 @@ public class Commentaire implements Serializable {
 	public void setPost(Post post) {
 		this.post = post;
 	}
+	
+
+	public Devoir getDevoir() {
+		return devoir;
+	}
+
+
+
+	public void setDevoir(Devoir devoir) {
+		this.devoir = devoir;
+	}
+
+
 
 	@Override
 	public String toString() {

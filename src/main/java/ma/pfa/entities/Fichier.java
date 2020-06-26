@@ -18,13 +18,18 @@ public class Fichier implements Serializable {
 	private String nom;
 	@OneToMany(mappedBy = "fichier")
 	private Collection<PostHasFiles> postHasFiles;
+	@OneToMany(mappedBy = "fichier")
+	private Collection<DevoirHasFiles> devoirHasFiles;
 
-	public Fichier(String nom, Collection<PostHasFiles> postHasFiles) {
+	
+	public Fichier(String nom, Collection<PostHasFiles> postHasFiles, Collection<DevoirHasFiles> devoirHasFiles) {
+		super();
 		this.nom = nom;
 		this.postHasFiles = postHasFiles;
+		this.devoirHasFiles = devoirHasFiles;
 	}
-	
-	
+
+
 
 	public Fichier() {
 		super();
@@ -61,12 +66,25 @@ public class Fichier implements Serializable {
 		this.postHasFiles = postHasFiles;
 	}
 
+
+
+	public Collection<DevoirHasFiles> getDevoirHasFiles() {
+		return devoirHasFiles;
+	}
+
+
+
+	public void setDevoirHasFiles(Collection<DevoirHasFiles> devoirHasFiles) {
+		this.devoirHasFiles = devoirHasFiles;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Fichier{" +
-				"id=" + id +
-				", nom='" + nom + '\'' +
-				", postHasFiles=" + postHasFiles +
-				'}';
+		return "Fichier [id=" + id + ", nom=" + nom + ", postHasFiles=" + postHasFiles + ", devoirHasFiles="
+				+ devoirHasFiles + "]";
 	}
+
+	
 }

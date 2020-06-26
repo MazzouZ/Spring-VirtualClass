@@ -1,5 +1,6 @@
 package ma.pfa.entities;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -13,6 +14,8 @@ public class MzRole implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String roleName;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Collection<MzUser> users=new ArrayList<>();
 
 	public MzRole(String roleName) {
 		this.roleName = roleName;

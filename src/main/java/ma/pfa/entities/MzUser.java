@@ -161,6 +161,8 @@ public class MzUser implements Serializable {
 		this.equipeInscriptions = equipeInscriptions;
 	}
 
+	
+
 	public Collection<UserHasDevoir> getUserHasDevoirs() {
 		return userHasDevoirs;
 	}

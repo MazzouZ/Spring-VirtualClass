@@ -14,8 +14,8 @@ public class Cours implements Serializable{
 	private String label;
 	private String code;
 	private String specialite;
-	@OneToMany(mappedBy = "cours")
-	private Collection<Equipe_Inscription> equipeInscriptions;
+	@OneToMany(mappedBy = "mzUser")
+	private Collection<Equipe_Inscription> equipeInscriptions; 
 	@ManyToOne
 	private Organisation organisation;
 	@OneToMany(mappedBy = "cours")
@@ -25,7 +25,17 @@ public class Cours implements Serializable{
 
 	
 
-	public Cours(String label, String code, String specialite, Collection<Equipe_Inscription> equipeInscriptions, Organisation organisation, Collection<Devoir> devoirs, Collection<Post> posts) {
+	
+	
+
+	
+
+
+	public Cours(Long id, String label, String code, String specialite,
+			Collection<Equipe_Inscription> equipeInscriptions, Organisation organisation, Collection<Devoir> devoirs,
+			Collection<Post> posts) {
+		super();
+		this.id = id;
 		this.label = label;
 		this.code = code;
 		this.specialite = specialite;
@@ -34,7 +44,7 @@ public class Cours implements Serializable{
 		this.devoirs = devoirs;
 		this.posts = posts;
 	}
-	
+
 
 	public Cours() {
 		super();
@@ -78,13 +88,20 @@ public class Cours implements Serializable{
 		this.specialite = specialite;
 	}
 
+	
+
+	
+
+
 	public Collection<Equipe_Inscription> getEquipeInscriptions() {
 		return equipeInscriptions;
 	}
 
+
 	public void setEquipeInscriptions(Collection<Equipe_Inscription> equipeInscriptions) {
 		this.equipeInscriptions = equipeInscriptions;
 	}
+
 
 	public Organisation getOrganisation() {
 		return organisation;
@@ -110,17 +127,16 @@ public class Cours implements Serializable{
 		this.posts = posts;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Cours{" +
-				"id=" + id +
-				", label='" + label + '\'' +
-				", code='" + code + '\'' +
-				", specialite='" + specialite + '\'' +
-				", equipeInscriptions=" + equipeInscriptions +
-				", organisation=" + organisation +
-				", devoirs=" + devoirs +
-				", posts=" + posts +
-				'}';
+		return "Cours [id=" + id + ", label=" + label + ", code=" + code + ", specialite=" + specialite
+				+ ", equipeInscriptions=" + equipeInscriptions + ", organisation=" + organisation + ", devoirs="
+				+ devoirs + ", posts=" + posts + "]";
 	}
+
+
+	
+
+	
 }
