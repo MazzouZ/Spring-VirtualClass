@@ -11,6 +11,7 @@ public class UserHasDevoir implements Serializable{
 	private Long id;
 	private double note;
 	private boolean etat;
+	private String createdBy;
 	@ManyToOne
 	private Devoir devoir;
 	@ManyToOne
@@ -20,10 +21,15 @@ public class UserHasDevoir implements Serializable{
 	
 	
 
-	public UserHasDevoir(double note, boolean etat, Devoir devoir, MzUser mzUser) {
+	
+
+
+
+	public UserHasDevoir(double note, boolean etat, String createdBy, Devoir devoir, MzUser mzUser) {
 		super();
 		this.note = note;
 		this.etat = etat;
+		this.createdBy = createdBy;
 		this.devoir = devoir;
 		this.mzUser = mzUser;
 	}
@@ -74,6 +80,18 @@ public class UserHasDevoir implements Serializable{
 
 	public void setEtat(boolean etat) {
 		this.etat = etat;
+	}
+
+    
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
 
