@@ -83,7 +83,11 @@ public class PostController {
 	    	    uhd.setMzUser(u);
 	    	    uhd.setEtat(false);
 	    	    userHasDevoirRepository.save(uhd);
+	    	    
 	    	}
+	    	UserHasDevoir uhdProf = userHasDevoirRepository.chercherUserDevoir(user, com);
+    	    uhdProf.setCreatedBy(username);
+    	    userHasDevoirRepository.save(uhdProf);
 	    	}catch (Exception e) {
 				// TODO: handle exception
 			}
