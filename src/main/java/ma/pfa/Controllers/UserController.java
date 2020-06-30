@@ -3,9 +3,11 @@ package ma.pfa.Controllers;
 import lombok.Data;
 import ma.pfa.entities.Fichier;
 import ma.pfa.entities.MzUser;
+import ma.pfa.entities.Organisation;
 import ma.pfa.entities.Post;
 import ma.pfa.entities.PostHasFiles;
 import ma.pfa.repos.MzUserRepository;
+import ma.pfa.repos.OrganisationRepository;
 import ma.pfa.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,6 +22,8 @@ import java.nio.file.Paths;
 public class UserController {
     @Autowired
     MzUserRepository mzUserRepository;
+    @Autowired
+    OrganisationRepository organisationRepository;
     @Autowired
     private AccountService accountService;
     @PostMapping("/register")
@@ -46,6 +50,24 @@ public class UserController {
         MzUser mzUser=mzUserRepository.findByUsername(username);
         if (mzUser == null) throw new RuntimeException("User Not Found ;) ");
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/PostFichiers/" + mzUser.getPhoto()));
+    }
+    
+    @PostMapping(path = "/addOrgPhoto/{id}")
+    public void addOrgPhoto(MultipartFile file, @PathVariable Long id) throws Exception {
+
+        Organisation org=organisationRepository.findById(id).get();
+        if (org == null) throw new RuntimeException("Org Not Found ;) ");
+
+        org.setPhoto(file.getOriginalFilename());
+        Files.write(Paths.get(System.getProperty("user.home") + "/PostFichiers/" + org.getPhoto()), file.getBytes());
+        organisationRepository.save(org);
+    }
+    @GetMapping(path = "/getOrgPhoto/{id}", produces = MediaType.ALL_VALUE)
+    public byte[] getOrgPhoto(@PathVariable("id") Long id) throws Exception {
+    	
+    	 Organisation org=organisationRepository.findById(id).get();
+        if (org == null) throw new RuntimeException("Organisation Not Found ;) ");
+        return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/PostFichiers/" + org.getPhoto()));
     }
 }
 
