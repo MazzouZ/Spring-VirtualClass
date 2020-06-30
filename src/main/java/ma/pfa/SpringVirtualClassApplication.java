@@ -19,15 +19,15 @@ public class SpringVirtualClassApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringVirtualClassApplication.class, args);
 	}
-	/*@Bean
-	CommandLineRunner start(AccountService accountService){
-		return args->{
-			accountService.save(new MzRole("SuperAdmin"));
-			accountService.save(new MzRole("AdminOrganisation"));
-			accountService.save(new MzRole("Student"));
-			accountService.save(new MzRole("Professor"));
-		};
-	}*/
+//	@Bean
+//	CommandLineRunner start(AccountService accountService){
+//		return args->{
+//			accountService.save(new MzRole("SuperAdmin"));
+//			accountService.save(new MzRole("AdminOrganisation"));
+//			accountService.save(new MzRole("Student"));
+//			accountService.save(new MzRole("Professor"));
+//		};
+//	}
 	@Bean
 	BCryptPasswordEncoder getBCPE(){
 		return new BCryptPasswordEncoder();
