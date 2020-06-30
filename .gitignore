@@ -31,3 +31,5 @@ build/
 .vscode/
 src/main/resources/application.properties
 src/main/resources/application.properties
+src/main/java/ma/pfa/SpringVirtualClassApplication.java
+src/main/resources/application.properties
